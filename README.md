@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Coding-Trivia-# <Your-Project-Title>
 
 ## Description
@@ -63,3 +64,6 @@ If you created an application or package and would like other developers to cont
 ## Tests
 
 Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+=======
+# Coding-Trivia
+>>>>>>> 2a12847f8e85501b464a2d14250f0d015b40fd7b
