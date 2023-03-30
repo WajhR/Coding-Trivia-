@@ -47,7 +47,7 @@ var questionDisplay = document.querySelector('#question-display');
 var timerDisplay = document.querySelector('#timer-display');
 var answerDisplay = document.querySelector('#answer-display');
 var nextBtn = document.querySelector('#next');
-
+choicesDisplay.addEventListener ('click',handleAnswer);
 // Create a variable to track current card index
 var currentIndex = 0;
 // Create a variable that will hold the current card object
@@ -144,6 +144,32 @@ function displayCard() {
 
 }
 
+function handleAnswer (event){
+  let btn = event.target;
+
+  if (!btn.matches('.choice')){
+    return;
+  }
+
+  if (btn.value !== currentquestion.correctAnswer){
+    count -= 10;
+  
+  if(count < 0) {
+     count = 0;
+  }
+  timerDisplay.textContent = count;
+  alert ('Incorrect!');
+  
+  } else {
+    alert ('correct!')
+  } 
+  index ++;
+  if (count <= 0 || index === questions.length) {
+    endGame ();
+  } else {
+    displayCard ();
+  }
+}
 function endGame(){
   clearInterval(timeInterval);
   cardDisplay.classList.add('hide');
