@@ -174,6 +174,8 @@ function endGame(){
   clearInterval(timeInterval);
   cardDisplay.classList.add('hide');
   endDisplay.classList.remove('hide');
+  let score = document.getElementById('final-score');
+  score.textContent = 'Your final score is ' + count; 
 }
 
 // When user clicks start button, show the first flash card
