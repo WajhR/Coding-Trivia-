@@ -1,8 +1,47 @@
 
 /**  Flash Card App  **/
+let questions = [
+  {
+    question: 'Q1',
+    choices: ['A1','A2','A3','A4'],
+    correctAnswer: 'A2',
+  },
+  {
+    question: 'Q2',
+    choices: ['A1','A2','A3','A4'],
+    correctAnswer: 'A1',
+  },
+  {
+    question: 'Q3',
+    choices: ['A1','A2','A3','A4'],
+    correctAnswer: 'A3',
+  },
+  {
+    question: 'Q4',
+    choices: ['A1','A2','A3','A4'],
+    correctAnswer: 'A2',
+  },
+  {
+    question: 'Q5',
+    choices: ['A1','A2','A3','A4'],
+    correctAnswer: 'A1',
+  },
+  {
+    question: 'Q6',
+    choices: ['A1','A2','A3','A4'],
+    correctAnswer: 'A4',
+  },
+];
+let index=0;
+let currentquestion =questions[index];
+
+
 
 // When page loads, show user a start button √
 var cardDisplay = document.querySelector('.card-display');
+var startDisplay = document.querySelector('.start-display');
+var endDisplay = document.querySelector('.end-display');
+var choicesDisplay = document.querySelector('#choices-display');
 var startBtn = document.querySelector('#start');
 var questionDisplay = document.querySelector('#question-display');
 var timerDisplay = document.querySelector('#timer-display');
@@ -10,68 +49,74 @@ var answerDisplay = document.querySelector('#answer-display');
 var nextBtn = document.querySelector('#next');
 
 // Create a variable to track current card index
-var currentCardIndex = 0;
+var currentIndex = 0;
 // Create a variable that will hold the current card object
 var card;
 // Create a variable to store the current timer count
-var count = 5;
+var count = questions.length * 15;
+var timeInterval;
 
 // Function that is called when the end of the cards
 // array is reached to prompts user to restart
-function promptUserToRestart() {
-  var userChoice = confirm('Would you like to restart?');
+// function promptUserToRestart() {
+//   var userChoice = confirm('Would you like to restart?');
 
-  if (userChoice) {
-    displayCard();
-  } else {
-    questionDisplay.innerText = 'Have a great day!';
-    answerDisplay.classList.add('hide');
-    nextBtn.classList.add('hide');
-  }
-}
+//   if (userChoice) {
+//     displayCard();
+//   } else {
+//     questionDisplay.innerText = 'Have a great day!';
+//     answerDisplay.classList.add('hide');
+//     nextBtn.classList.add('hide');
+//   }
+// }
 
 // Function to hide the timer and show the answer
 // and next button
-function showAnswer() {
-  answerDisplay.innerText = card.answer;
-  timerDisplay.classList.add('hide');
-  nextBtn.classList.remove('hide');
-  answerDisplay.classList.remove('hide');
+// function showAnswer() {
+//   answerDisplay.innerText = card.answer;
+//   timerDisplay.classList.add('hide');
+//   nextBtn.classList.remove('hide');
+//   answerDisplay.classList.remove('hide');
 
-  currentCardIndex++;
+//   currentCardIndex++;
 
-  // If the currentCardIndex is equal to the cards array
-  // length, then we stop flashCards and confirm
-  // if the user would like to restart
-  if (currentCardIndex === cards.length) {
-    // Reset card tracking values
-    currentCardIndex = 0;
-    nextBtn.classList.add('hide');
-    promptUserToRestart();
-  }
+//   // If the currentCardIndex is equal to the cards array
+//   // length, then we stop flashCards and confirm
+//   // if the user would like to restart
+//   if (currentCardIndex === cards.length) {
+//     // Reset card tracking values
+//     currentCardIndex = 0;
+//     nextBtn.classList.add('hide');
+//     promptUserToRestart();
+//   }
+// }
+///// BEGIN CODE
+// Hide the start button and call displayCard
+function startGame() {
+  startDisplay.classList.add('hide');
+  cardDisplay.classList.remove('hide');
+  startTimer();
+  displayCard();
 }
 
 // Create a function that starts a timer at 5 seconds
 // and counts down to zero, then calls showAnswer
 function startTimer() {
-  timerDisplay.classList.remove('hide');
-  timerDisplay.innerText = '5';
+  timerDisplay.textContent = count;
   // Create a setInterval and store it to a variable
   // that triggers every second
-  var timer = setInterval(function() {
+  timeInterval = setInterval(function() {
 
     // Decrease count by one
     count--;
 
     // Set countDisplay to the count variable
-    timerDisplay.innerText = count;
+    timerDisplay.textContent = count;
 
     // If count is equal to zero, stop timer and show
     // answer/next button and reset count to 5
-    if (!count) {
-      clearInterval(timer);
-      count = 5;
-      showAnswer();
+    if (count <= 0) {
+      endGame()
     }
   }, 1000);
 }
@@ -80,26 +125,34 @@ function startTimer() {
 // the question to the window
 function displayCard() {
   // Create a variable reference to the current card object from the cards array
-  card = cards[currentCardIndex];
-
-  cardDisplay.classList.remove('hide');
+  currentQuestion = questions[index];
   
-  questionDisplay.innerText = card.question;
+  questionDisplay.textContent = currentQuestion.question;
 
-  answerDisplay.classList.add('hide');
-  nextBtn.classList.add('hide');  
-  startTimer();
+  choicesDisplay.innerHTML = ""
+  for (let i = 0; i < currentQuestion.choices.length; i++) {
+    // create buttons 
+    // as their text put curentquestion.choice[i]
+    // append button as child 
+    let choice = currentQuestion.choices [i];
+    let btn = document.createElement('button');
+    btn.setAttribute('class','choice');
+    btn.setAttribute('value',choice);
+    btn.textContent = i + 1 + '. ' + choice;
+    choicesDisplay.appendChild (btn);
+  }
+
 }
 
-// Hide the start button and call displayCard
-function startFlashCards() {
-  startBtn.classList.add('hide');
-  displayCard();
+function endGame(){
+  clearInterval(timeInterval);
+  cardDisplay.classList.add('hide');
+  endDisplay.classList.remove('hide');
 }
 
 // When user clicks start button, show the first flash card
-startBtn.addEventListener('click', startFlashCards);
-nextBtn.addEventListener('click', displayCard);
+startBtn.addEventListener('click', startGame);
+//nextBtn.addEventListener('click', displayCard);
 
 
 // Show card question and start a 5 second timer
