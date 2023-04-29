@@ -4,34 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Quiz App</title>
+    <title>Coding Quiz Challenge</title>
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
     
-     <h1 class="main-header text-center">Coding Trivia</h1>
+     <h1 class="main-header text-center">Coding Quiz Challenge</h1>
      
      <section class ="card-wrap text-center">
        
 
-        <div class="start-display">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab cupiditate quaerat rem provident accusantium, beatae earum eveniet ducimus sapiente, laboriosam reprehenderit tempore, velit non veniam explicabo consequatur placeat molestiae sed.</p>
-             <button id="start">Start</button>
+        <div class="start-display text-center">
+            <p>Try to answer the following code-related questions within the 
+                time limit.  Keep in mind that incorrect answers will penalize your score/time 
+                by ten seconds!
+            </p>
+             <button id="start">Start Quiz</button>
+             
         </div>
         <div class="card-display hide">
             <h1>Time Left: <span  id="timer-display"></span></h1>
             <h3 id="question-display" class="text-center"></h3>
              <div id="choices-display"></div>
+            
 
         </div>
+
+       
         <div class="end-display hide">
             <h1>the end</h1>
             <p id = "final-score"> </p>
         </div>
     </section>
 
-    <script src="cards.js"></script>
+   
     <script src="script.js"></script>
     
 </body>

@@ -2,7 +2,7 @@
 /** RESETS **/
 
 * {
-  background-color: gray;
+  background-color: white;
 }
 *{
   font: black;
@@ -17,6 +17,7 @@
   text-align: center;
 }
 
+
 .hide {
   display: none;
 }
@@ -24,6 +25,9 @@
 ** CUSTOM STYLES **
 .main-header {
   margin: 25px 0 45px;
+}
+div{
+  word-wrap: normal;
 }
 
 /* Start Button */
@@ -74,5 +78,16 @@
  
 .choice {
   display:block;
+  border-radius: 0.5rem;
+  font-weight:600;
+  margin: .7rem 0;
+  padding: .4rem 1.2rem;
+  cursor: pointer;
+  border: 3px solid var(--light-purple-color);
+  background-color:purple;
+  color: white;
+  box-shadow: 0 4px 0 0 #6c4298;
 }
+
+
 

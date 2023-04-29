@@ -1,39 +1,39 @@
 
-/**  Flash Card App  **/
-let questions = [
+/** Coding Quiz Challenge **/
+var questions = [
   {
-    question: 'Q1',
-    choices: ['A1','A2','A3','A4'],
-    correctAnswer: 'A2',
+    question: 'What does the acronym DOM stand for in javascript?',
+    choices: ['Deo Opt. Max.','Dominant Object Model','Days on Market','Document Object Model'],
+    correctAnswer: 'Document Object Model',
   },
   {
-    question: 'Q2',
-    choices: ['A1','A2','A3','A4'],
-    correctAnswer: 'A1',
+    question: 'Which syntax is used to call a function?',
+    choices: ['{}','()','[]','""'],
+    correctAnswer: '()',
   },
   {
-    question: 'Q3',
-    choices: ['A1','A2','A3','A4'],
-    correctAnswer: 'A3',
+    question: 'Which is a primative value in javascript?',
+    choices: ['Array', 'String','Object','function'],
+    correctAnswer: 'String',
   },
   {
-    question: 'Q4',
-    choices: ['A1','A2','A3','A4'],
-    correctAnswer: 'A2',
+    question: 'Arrays in Javascript can be used to store _____',
+    choices: ['Numbers','Strings','other arrays','All of the above'],
+    correctAnswer: 'All of the above',
   },
   {
-    question: 'Q5',
-    choices: ['A1','A2','A3','A4'],
-    correctAnswer: 'A1',
+    question: 'String values must be enclosed within _____ when being assigned to variables.',
+    choices: ['commas','curly brackets','quotes','parenthesis'],
+    correctAnswer: 'commas',
   },
   {
-    question: 'Q6',
-    choices: ['A1','A2','A3','A4'],
-    correctAnswer: 'A4',
+    question: 'Commonly used data types DO NOT include:',
+    choices: ['strings','boolean','alerts','numbers'],
+    correctAnswer: 'alerts',
   },
 ];
-let index=0;
-let currentquestion =questions[index];
+var index=0;
+var currentquestion =questions[index];
 
 
 
@@ -56,40 +56,9 @@ var card;
 var count = questions.length * 15;
 var timeInterval;
 
-// Function that is called when the end of the cards
-// array is reached to prompts user to restart
-// function promptUserToRestart() {
-//   var userChoice = confirm('Would you like to restart?');
 
-//   if (userChoice) {
-//     displayCard();
-//   } else {
-//     questionDisplay.innerText = 'Have a great day!';
-//     answerDisplay.classList.add('hide');
-//     nextBtn.classList.add('hide');
-//   }
-// }
 
-// Function to hide the timer and show the answer
-// and next button
-// function showAnswer() {
-//   answerDisplay.innerText = card.answer;
-//   timerDisplay.classList.add('hide');
-//   nextBtn.classList.remove('hide');
-//   answerDisplay.classList.remove('hide');
 
-//   currentCardIndex++;
-
-//   // If the currentCardIndex is equal to the cards array
-//   // length, then we stop flashCards and confirm
-//   // if the user would like to restart
-//   if (currentCardIndex === cards.length) {
-//     // Reset card tracking values
-//     currentCardIndex = 0;
-//     nextBtn.classList.add('hide');
-//     promptUserToRestart();
-//   }
-// }
 ///// BEGIN CODE
 // Hide the start button and call displayCard
 function startGame() {
@@ -125,16 +94,16 @@ function startTimer() {
 // the question to the window
 function displayCard() {
   // Create a variable reference to the current card object from the cards array
-  currentQuestion = questions[index];
+  currentquestion = questions[index];
   
-  questionDisplay.textContent = currentQuestion.question;
+  questionDisplay.textContent = currentquestion.question;
 
   choicesDisplay.innerHTML = ""
-  for (let i = 0; i < currentQuestion.choices.length; i++) {
+  for (let i = 0; i < currentquestion.choices.length; i++) {
     // create buttons 
     // as their text put curentquestion.choice[i]
     // append button as child 
-    let choice = currentQuestion.choices [i];
+    let choice = currentquestion.choices [i];
     let btn = document.createElement('button');
     btn.setAttribute('class','choice');
     btn.setAttribute('value',choice);
@@ -148,7 +117,8 @@ function handleAnswer (event){
   let btn = event.target;
 
   if (!btn.matches('.choice')){
-    return;
+    return 
+    ;
   }
 
   if (btn.value !== currentquestion.correctAnswer){
@@ -180,17 +150,6 @@ function endGame(){
 
 // When user clicks start button, show the first flash card
 startBtn.addEventListener('click', startGame);
-//nextBtn.addEventListener('click', displayCard);
 
 
-// Show card question and start a 5 second timer
-  
-  
 
-// When timer has completed, show the answer
-// Show a Next button to allow the user to transition to the next card
-
-// When the end of the card array has been reached, show the user a confirmation asking
-// if they would like to restart from the beginning
-// If they confirm yes, reset card index to zero and show first card
-// If they confirm no, show a goodbye message
